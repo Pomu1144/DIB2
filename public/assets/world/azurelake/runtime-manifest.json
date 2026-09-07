@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "region": "azurelake",
+  "sourceManifestRevision": 5,
+  "units": "world-pixels",
+  "depth": "ground-contact-y",
+  "assets": [
+    {
+      "id": "azurelake.spawn-plaza.prop.crystal-fountain.main",
+      "path": "props/azurelake__spawn-plaza__prop__crystal-fountain__main.png",
+      "name": "crystal-fountain",
+      "origin": [
+        0.5,
+        0.889952
+      ],
+      "scale": 0.24,
+      "footprint": {
+        "x": -113,
+        "y": -65,
+        "w": 226,
+        "h": 65
+      },
+      "source": {
+        "driveFileId": "1roZLhYFCUjwD4m-YaWne9tIjQdmYK_Si",
+        "sha256": "abfca60a81ad8e42215965d7dcb9e41872f7ee3b7efa8c63f66864d42368a237",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "batch": "batch-001"
+      },
+      "status": "prototype-integration",
+      "calibration": "Initial runtime scale and rectangular footprint; requires art review."
+    },
+    {
+      "id": "azurelake.spawn-plaza.prop.street-lamp.01",
+      "path": "props/azurelake__spawn-plaza__prop__street-lamp__01.png",
+      "name": "street-lamp",
+      "origin": [
+        0.595703,
+        0.959635
+      ],
+      "scale": 0.14,
+      "footprint": {
+        "x": -8,
+        "y": -10,
+        "w": 16,
+        "h": 10
+      },
+      "source": {
+        "driveFileId": "1JMTbd-u9zn0-o6vXFIkXRpD_UYf7QMn-",
+        "sha256": "5619f3ec11a9729cb59d002e4f08895d70def044310e2e2375be38c3394f1750",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "batch": "batch-001"
+      },
+      "status": "prototype-integration",
+      "calibration": "Initial runtime scale and rectangular footprint; requires art review."
+    },
+    {
+      "id": "azurelake.spawn-plaza.vegetation.white-tree.01",
+      "path": "vegetation/azurelake__spawn-plaza__vegetation__white-tree__01.png",
+      "name": "white-tree",
+      "origin": [
+        0.5,
+        0.931641
+      ],
+      "scale": 0.22,
+      "footprint": {
+        "x": -16,
+        "y": -18,
+        "w": 32,
+        "h": 18
+      },
+      "source": {
+        "driveFileId": "17B4kjrHGkgBxKzjDCNhYNYh89xijKCq7",
+        "sha256": "e96a92a4174607504eb0f1ab1cc5bfef04bd44b4d649fd1d5a4ff0d0b88e5b84",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "batch": "batch-001"
+      },
+      "status": "prototype-integration",
+      "calibration": "Initial runtime scale and rectangular footprint; requires art review."
+    },
+    {
+      "id": "azurelake.spawn-plaza.architecture.market-stall.01",
+      "path": "architecture/azurelake__spawn-plaza__architecture__market-stall__01.png",
+      "name": "market-stall",
+      "origin": [
+        0.507576,
+        0.893142
+      ],
+      "scale": 0.38,
+      "footprint": {
+        "x": -168,
+        "y": -72,
+        "w": 336,
+        "h": 72
+      },
+      "source": {
+        "driveFileId": "1XEMVobUXsJLTtjIDYcmahtuuWDuvWzfX",
+        "sha256": "4c96dfdeed41a9ef2321face5489a8c9841d8a9b660242d8eb1c7704d2b91346",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "batch": "batch-001"
+      },
+      "status": "prototype-integration",
+      "calibration": "Initial runtime scale and rectangular footprint; requires art review."
+    },
+    {
+      "id": "azurelake.harbor.prop.dock-crate.01",
+      "path": "props/azurelake__harbor__prop__dock-crate__01.png",
+      "name": "dock-crate",
+      "origin": [
+        0.500399,
+        0.889155
+      ],
+      "scale": 0.09,
+      "footprint": {
+        "x": -35,
+        "y": -24,
+        "w": 70,
+        "h": 24
+      },
+      "source": {
+        "driveFileId": "1Kw1W32eDL_qFu3pedgbE3e0TuSdGp6Cz",
+        "sha256": "ee7ebbd09c8f1f1a964ba021c248229e836d93fdb247b06c9553b664af8fa621",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "batch": "batch-001"
+      },
+      "status": "prototype-integration",
+      "calibration": "Initial runtime scale and rectangular footprint; requires art review."
+    }
+  ]
+}
