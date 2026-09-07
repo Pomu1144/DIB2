@@ -42,13 +42,28 @@ export class AzurelakeScene extends Phaser.Scene {
 
   private drawGround(){
     const g=this.add.graphics();g.fillStyle(COLORS.ground).fillRect(0,0,this.current.width,this.current.height);
-    g.fillStyle(COLORS.path,.95);g.fillRoundedRect(520,0,880,this.current.height,36);g.fillRoundedRect(0,650,this.current.width,320,36);
+    g.fillStyle(COLORS.path,.95);
+    if(this.current.id==='lower-ward'){
+      g.fillRoundedRect(575,0,770,this.current.height,28);
+      [300,720,1140,1540].forEach(y=>g.fillRoundedRect(350,y,1220,250,24));
+      [560,980,1400].forEach(y=>{g.fillStyle(0xb9b09a,1).fillRoundedRect(720,y,480,120,16);for(let sy=y+15;sy<y+120;sy+=18)g.lineStyle(2,0x827e72,.45).lineBetween(735,sy,1185,sy);});
+      g.fillStyle(COLORS.path,.95);
+    } else {
+      g.fillRoundedRect(520,0,880,this.current.height,36);g.fillRoundedRect(0,650,this.current.width,320,36);
+    }
     for(let i=0;i<80;i++){const x=Phaser.Math.Between(0,this.current.width),y=Phaser.Math.Between(0,this.current.height);g.fillStyle(0xffffff,.035).fillCircle(x,y,Phaser.Math.Between(2,5))}
     if(this.current.id==='plaza'){g.lineStyle(8,0xb6aa8f,1).strokeCircle(960,820,180);g.fillStyle(0x4f91ab).fillCircle(960,820,150);g.fillStyle(0xd9d2c3).fillCircle(960,820,38)}
   }
 
   private drawWater(){
     const g=this.add.graphics();this.current.water.forEach(r=>{this.rect(g,r,COLORS.water);for(let y=r.y+18;y<r.y+r.h;y+=34){g.lineStyle(3,COLORS.water2,.7).lineBetween(r.x+8,y,r.x+r.w-8,y)};this.addBlock(r)});
+    if(this.current.id==='lower-ward'){
+      [390,810,1230,1580].forEach(y=>{
+        g.fillStyle(COLORS.path,1).fillRoundedRect(390,y,230,92,20);g.fillRoundedRect(1300,y,230,92,20);
+        g.lineStyle(5,0x28313b,1).strokeRoundedRect(400,y+8,210,76,16);g.strokeRoundedRect(1310,y+8,210,76,16);
+      });
+      g.fillStyle(0xdde5ec,.7);for(let y=1690;y<1880;y+=30){g.fillRect(445,y,75,12);g.fillRect(1400,y,75,12)}
+    }
   }
 
   private drawBuildings(){
@@ -67,7 +82,7 @@ export class AzurelakeScene extends Phaser.Scene {
   }
 
   private drawExits(){
-    this.current.exits.forEach(e=>{const zone=this.add.zone(e.x+e.w/2,e.y+e.h/2,e.w,e.h);this.physics.add.existing(zone,true);zone.setData('exit',e);this.add.text(e.x+e.w/2,e.y+e.h/2,e.label,{fontFamily:'Georgia',fontSize:'18px',color:'#f0d594',backgroundColor:'#15191dcc',padding:{x:8,y:5}}).setOrigin(.5).setDepth(9)});
+    this.current.exits.forEach(e=>{const zone=this.add.zone(e.x+e.w/2,e.y+e.h/2,e.w,e.h);this.physics.add.existing(zone,true);zone.setData('exit',e);this.add.text(e.x+e.w/2,e.y+e.h/2,e.label,{fontFamily:'Georgia',fontSize:'18px',color:e.locked?'#9ba4ad':'#f0d594',backgroundColor:'#15191dcc',padding:{x:8,y:5}}).setOrigin(.5).setDepth(9)});
   }
 
   update(){
@@ -88,6 +103,6 @@ export class AzurelakeScene extends Phaser.Scene {
     else if(this.nearbyNpc)gameEvents.emit({type:'toast',message:`${this.nearbyNpc.name}: “${this.nearbyNpc.line}”`});
   }
 
-  private resolveExit(){if(this.transitioning)return;for(const e of this.current.exits){if(this.player.x>e.x&&this.player.x<e.x+e.w&&this.player.y>e.y&&this.player.y<e.y+e.h){this.transitioning=true;this.cameras.main.fadeOut(180,0,0,0);this.time.delayedCall(190,()=>{this.buildSection(e.to,e.spawnX,e.spawnY);this.cameras.main.fadeIn(180,0,0,0)});break}}
+  private resolveExit(){if(this.transitioning)return;for(const e of this.current.exits){if(e.locked)continue;if(this.player.x>e.x&&this.player.x<e.x+e.w&&this.player.y>e.y&&this.player.y<e.y+e.h){this.transitioning=true;this.cameras.main.fadeOut(180,0,0,0);this.time.delayedCall(190,()=>{this.buildSection(e.to,e.spawnX,e.spawnY);this.cameras.main.fadeIn(180,0,0,0)});break}}
   }
 }
