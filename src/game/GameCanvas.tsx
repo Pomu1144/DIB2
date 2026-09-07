@@ -19,5 +19,5 @@ export function GameCanvas(){
     });
     return()=>game.destroy(true);
   },[]);
-  return <div ref={host} className="game-canvas"/>;
+  return <div ref={host} className="game-canvas" role="application" aria-label="Azurelake exploration map" tabIndex={0}/>;
 }

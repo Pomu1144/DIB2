@@ -1,6 +1,7 @@
 import React,{useEffect,useMemo,useState}from'react';
 import{createRoot}from'react-dom/client';
 import{GameCanvas}from'./game/GameCanvas';
+import{WorldDebug}from'./game/WorldDebug';
 import{gameEvents,GameEvent}from'./game/EventBus';
 import{creatures,items}from'./gameData';
 import'./style.css';
@@ -16,6 +17,7 @@ function App(){
  const party=useMemo(()=>state.party.map(creature),[state.party]);
  useEffect(()=>gameEvents.subscribe((e:GameEvent)=>{if(e.type==='interaction')setModal(e.action);if(e.type==='toast')setToast(e.message);if(e.type==='subsection')setSection(e.name)}),[]);
  useEffect(()=>{localStorage.setItem('dib2-save',JSON.stringify(state))},[state]);
+ useEffect(()=>{gameEvents.emit({type:'menu',open:modal!==null})},[modal]);
  const close=()=>setModal(null);
  function heal(){setState(s=>({...s}));setToast('Your active team has been fully restored.');close()}
  function buy(id:string,cost:number){if(state.gold<cost){setToast('Not enough gold.');return}setState(s=>({...s,gold:s.gold-cost,inventory:{...s.inventory,[id]:(s.inventory[id]||0)+1}}));setToast(`Purchased ${items.find(i=>i.id===id)?.name||id}.`)}
@@ -24,6 +26,7 @@ function App(){
  function claimRound(){if(round<3){setRound(r=>r+1);setEnemyHp(1800+round*450);setToast(`Arena round ${round+1} begins.`)}else{setState(s=>({...s,wins:s.wins+1,gold:s.gold+600}));setRound(1);setEnemyHp(1800);setToast('Tournament won! +600 gold and +1 Azurelake win.');close()}}
  return <div className="app-shell">
    <div className="hud top"><div><b>AZURELAKE</b><span>{section}</span></div><div className="wallet">◈ {state.gold} · Wins {state.wins}</div></div>
+   <WorldDebug/>
    <GameCanvas/>
    <div className="hud bottom"><span>{toast}</span><span>Move: WASD / Arrows · Interact: E</span></div>
    {modal&&<div className="modalShade" onMouseDown={close}><section className="modal" onMouseDown={e=>e.stopPropagation()}><button className="x" onClick={close}>×</button>
