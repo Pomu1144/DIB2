@@ -1,7 +1,10 @@
 export type GameEvent =
   | { type: 'interaction'; action: 'heal' | 'shop' | 'team' | 'arena' | 'guild'; label: string }
   | { type: 'subsection'; id: string; name: string }
-  | { type: 'toast'; message: string };
+  | { type: 'toast'; message: string }
+  | { type: 'menu'; open: boolean }
+  | { type: 'debug'; enabled: boolean; section: string; x: number; y: number; loaded: number; total: number; blockers: number }
+  | { type: 'debug-travel'; section: string };
 
 type Listener = (event: GameEvent) => void;
 
