@@ -76,10 +76,11 @@ export class AzurelakeScene extends Phaser.Scene {
   }
 
   private resolveNearby(){
-    this.nearbyService=undefined;this.nearbyNpc=undefined;let best=150;
-    this.current.services.forEach(s=>{const x=Phaser.Math.Clamp(this.player.x,s.x,s.x+s.w),y=Phaser.Math.Clamp(this.player.y,s.y,s.y+s.h),d=Phaser.Math.Distance.Between(this.player.x,this.player.y,x,y);if(d<best){best=d;this.nearbyService=s}});
-    this.current.npcs.forEach(n=>{const d=Phaser.Math.Distance.Between(this.player.x,this.player.y,n.x,n.y);if(d<105){this.nearbyNpc=n}});
-    if(this.prompt)this.prompt.setText(this.nearbyService?`[E] ${this.nearbyService.name}`:this.nearbyNpc?`[E] Talk to ${this.nearbyNpc.name}`:'WASD / Arrows to move');
+    let service:Service|undefined;let npc:{name:string;line:string}|undefined;let best=150;
+    for(const s of this.current.services){const x=Phaser.Math.Clamp(this.player.x,s.x,s.x+s.w),y=Phaser.Math.Clamp(this.player.y,s.y,s.y+s.h),d=Phaser.Math.Distance.Between(this.player.x,this.player.y,x,y);if(d<best){best=d;service=s}}
+    for(const n of this.current.npcs){const d=Phaser.Math.Distance.Between(this.player.x,this.player.y,n.x,n.y);if(d<105)npc=n}
+    this.nearbyService=service;this.nearbyNpc=npc;
+    if(this.prompt)this.prompt.setText(service?`[E] ${service.name}`:npc?`[E] Talk to ${npc.name}`:'WASD / Arrows to move');
   }
 
   private activateNearby(){
