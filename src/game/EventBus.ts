@@ -8,7 +8,10 @@ type Listener = (event: GameEvent) => void;
 class EventBusImpl {
   private listeners = new Set<Listener>();
   emit(event: GameEvent) { this.listeners.forEach(listener => listener(event)); }
-  subscribe(listener: Listener) { this.listeners.add(listener); return () => this.listeners.delete(listener); }
+  subscribe(listener: Listener) {
+    this.listeners.add(listener);
+    return () => { this.listeners.delete(listener); };
+  }
 }
 
 export const gameEvents = new EventBusImpl();
