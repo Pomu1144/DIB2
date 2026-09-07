@@ -9,6 +9,7 @@ Azurelake is implemented as connected playable subsections rather than a single 
 - `plaza` — spawn, Healing Sanctuary, Market Hall, Team Hall, Guild Hall, NPCs, fountain and exits.
 - `arena` — Grand Arena, tournament registrar, trainer and return route.
 - `harbor` — harbor supply shop, harbormaster, sailor and return route.
+- `lower-ward` — terraced residential/artisan district with dual canals, bridges, bakery-café, workshop, apothecary, healing-spring pavilion and a planned southern route to Cascade Gardens.
 
 Walking into an exit zone fades and loads the neighboring subsection at the matching entrance coordinate. Buildings, water and NPCs have real collision geometry. Interactions happen near a building or NPC with `E`.
 
